@@ -1,0 +1,133 @@
+<head>
+  <!--это мы подтянули шрифт стилизованный под игры на денди из goggle fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Press Start 2P', cursive;
+    }
+  </style>
+</head>
+<body>
+    <!-- box-sizing применяется для изменения алгоритма расчета ширины и высоты элемента. Изза border-box контент сжимается чтобы дать место рамкам -->
+      <!-- Это всегда нужно иметь на любом сайте котоырй мы создаем -->
+  <!-- red container div -->
+  <!-- postiton realtive - устанавливает позицию относительно начальных точек - в данном случае x: 0, y: 0-->
+  <!-- display: inline-block значит что элемент может помещаться стопкой как при block. Но не может быть шире их - width такой же или меньше -->
+  <div style="position: relative; display: inline-block;">
+    <!-- smaller red container div -->
+    <!-- display flex - блоки внутри идут друг за другом. Если поставить block - то сверху друг на друга -->
+    <!-- aligm-items работает только с display: flex -->
+    <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
+
+      <!-- player health -->
+      <div  style="
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 4px solid white;
+            border-left: 4px solid white;
+            border-bottom: 4px solid white;
+            ">
+            <!-- justify-content - работает только если мы имеем display-flex. flex-end - говорит всем элементам детям выравниваться направо
+            Изза этого хп игрока убывают в правильном направлении-->
+
+        <div style="
+             background-color: red;
+             width: 100%;
+             height: 30px;">
+        </div>
+        <!-- top, right,left, bottom  равное 0 - дают то что фон виден. Это позволяет ему полностью наследовать width и height родительского элемента
+            Убрали left потому что мы не хотим чтобы left ребенка касался left родителя в нуле-->
+        <div id="playerHealth"
+             style="
+             position: absolute;
+             background: #818CF8;
+             top: 0;
+             right: 0;
+             bottom: 0;
+             width: 100%
+             ">
+        </div>
+      </div>
+      <!-- timer -->
+      <!-- flex-shrink - сокращает наш элемент не позволяет в inline-block залезать на другие(как то так)
+          align-items: center; - выравнивает по центру вертикали содержимое див
+          justify-content: center; - выравнивает по центру по горизонтали содержимое див-->
+      <div
+           id="timer"
+           style="
+           background-color: black;
+           color: white;
+           height: 50px;
+           width: 100px;
+           flex-shrink: 0;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           border: 4px solid white;
+           ">
+           10
+      </div>
+
+      <div  style="
+            position: relative;
+            width: 100%;
+            border-top: 4px solid white;
+            border-right: 4px solid white;
+            border-bottom: 4px solid white;
+            ">
+        <!-- enemy health -->
+        <div style="
+             background-color: red;
+             height: 30px;">
+        </div>
+        <!-- top, right,left, bottom  равное 0 - дают то что фон виден. Это позволяет ему полностью наследовать width и height родительского элемента -->
+        <div id="enemyHealth"
+             style="
+             position: absolute;
+             background: #818CF8;
+             top: 0;
+             right: 0;
+             left: 0;
+             bottom: 0;">
+        </div>
+      </div>
+    </div>
+
+<!--"position: absolute" - привязывает наше положение к контейнеру снаружи
+Устанавливаем top, bottom,left,right в 0 чтобы эти точки привязались к соответствующим точкам родительского элемента и переняли width и height от родителя
+Получается как бы внутренний див растягивается и сравнивается с родительским по размеру -->
+    <div
+        id="drow"
+        style=
+        "position: absolute;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        color:red;
+        ">
+      Drow
+    </div>
+
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
+  </script>
+  <script type="text/javascript" src = "utils.js"> </script>
+  <script type="text/javascript" src = "js/classes.js"> </script>
+  <script type="text/javascript" src = "index.js"> </script>
+</body>
